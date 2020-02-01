@@ -7,8 +7,8 @@ public class MovableElement : MonoBehaviour
 {
     [HideInInspector]
     public Transform papa;
-    [SerializeField]
-    bool movable = true;
+    
+    public bool movable = true;
 
 
     private void Awake()

@@ -31,7 +31,12 @@ public class UIPosHandler : Singleton<UIPosHandler>
         UIMovement.Instance.activeElement = activeElem;
         UIMovement.Instance.CheckMode();
     }
-
+    
+    public void OnWin()
+    {
+        isUIon = false;
+        UI.gameObject.SetActive(false);
+    }
     
 
     

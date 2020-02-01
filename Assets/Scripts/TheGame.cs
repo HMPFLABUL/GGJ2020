@@ -9,16 +9,27 @@ public class TheGame : MonoBehaviour
     GameEvent Win;
     bool over = false;
     List<MovableElement> elements;
+    [SerializeField]
+    ElementRandomizer rr;
     private void Awake()
     {
+        if (rr != null)
+            rr.Randomize();
         over = false;
         elements = new List<MovableElement>(GetComponentsInChildren<MovableElement>());
     }
-
-
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (over)
+                Win.Raise();
+        }
+    }
     private void LateUpdate()
     {
         WinCheck();
+        
     }
 
     private void WinCheck()
@@ -35,8 +46,7 @@ public class TheGame : MonoBehaviour
                 if (elements[0].transform.parent.transform.position != elements[i].transform.parent.transform.position)
                     return;
             }
-
-            Win.Raise();
+            over = true;
         }
     }
 }
