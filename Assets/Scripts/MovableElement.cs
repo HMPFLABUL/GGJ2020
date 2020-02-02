@@ -17,18 +17,18 @@ public class MovableElement : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (movable)
+        if (movable && GameMenager.Instance.playerInputActive)
             UIPosHandler.Instance.HandleUIRelation(this);
 
     }
     private void OnMouseDrag()
     {
-        if (movable)
+        if (movable && GameMenager.Instance.playerInputActive)
             UIMovement.Instance.MoveObj();
     }
     private void OnMouseUp()
     {
-        if (movable)
+        if (movable && GameMenager.Instance.playerInputActive)
             UIMovement.Instance.ResetMode();
     }
 }

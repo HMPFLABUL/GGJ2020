@@ -32,11 +32,12 @@ public class UIPosHandler : Singleton<UIPosHandler>
         UIMovement.Instance.CheckMode();
     }
     
-    public void OnWin()
+    public void ResetUI()
     {
         isUIon = false;
         UI.gameObject.SetActive(false);
     }
+    
     
 
     

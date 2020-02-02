@@ -17,6 +17,7 @@ public class UIMovement : Singleton<UIMovement>
 
     private void OnMouseDown()
     {
+        if(GameMenager.Instance.playerInputActive)
         CheckMode();
     }
 
@@ -42,7 +43,8 @@ public class UIMovement : Singleton<UIMovement>
 
     private void OnMouseDrag()
     {
-        MoveObj();
+        if(GameMenager.Instance.playerInputActive)
+            MoveObj();
 
     }
 

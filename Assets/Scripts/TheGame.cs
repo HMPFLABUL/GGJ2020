@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ScriptableObjectArchitecture;
+using DG.Tweening;
 public class TheGame : MonoBehaviour
 {
     [SerializeField]
@@ -13,19 +14,14 @@ public class TheGame : MonoBehaviour
     ElementRandomizer rr;
     private void Awake()
     {
+        UIPosHandler.Instance.ResetUI();
+        GameMenager.Instance.playerInputActive = true;
         if (rr != null)
             rr.Randomize();
         over = false;
         elements = new List<MovableElement>(GetComponentsInChildren<MovableElement>());
     }
-    private void Update()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (over)
-                Win.Raise();
-        }
-    }
+
     private void LateUpdate()
     {
         WinCheck();
@@ -46,6 +42,9 @@ public class TheGame : MonoBehaviour
                 if (elements[0].transform.parent.transform.position != elements[i].transform.parent.transform.position)
                     return;
             }
+            Win.Raise();
+            transform.DOShakeScale(.4f, .1f, 10, 1, false);
+            GameMenager.Instance.playerInputActive = false;
             over = true;
         }
     }
